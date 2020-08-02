@@ -103,6 +103,8 @@ In the previous point, I mentioned we should put the happy path first in an if-e
 {% highlight ruby %}
 #=> meh code
 def check_out(current_user)
+  cart = current_user.cart
+  
   if cart.count > 0
     if !cart.are_products_available
       if current_user.balance >= total_price
@@ -125,11 +127,13 @@ As you can see, in some instances where there are multple conditions, you might 
 {% highlight ruby %}
 #=> better code (early returns with guard clauses)
 def check_out(current_user)
+  cart = current_user.cart
+
   if cart.count == 0
     return Status.new(false, "empty cart")
   end
 
-  if cart.are_products_available
+  if !cart.are_products_available
     return Status.new(false, "some products are unavailable")
   end
 
