@@ -145,7 +145,7 @@ end
 
 Other than immediately improving the code readability, guard clauses also have other benefits like:
 - Easier to make changes to the code in the future
-- Possibility of refactoring the code to be even more readable (might talk about this in another post)
+- Possibility of refactoring the code to be even more readable (I wrote about this in [another post]({{ site.baseurl }}{% link _posts/2020-08-02-readability-through-abstraction.markdown %}))
 
 # <b>#4: Avoid reassigning variables</b>
 
