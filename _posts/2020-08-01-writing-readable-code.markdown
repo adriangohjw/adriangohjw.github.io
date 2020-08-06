@@ -179,7 +179,7 @@ users = Users.completed_onboarding_form
              .where(specialisations: "backend")
 {% endhighlight %}
 
-My tip as to choosing which method to use depends on the probability of reusing the variale in the first line of code. If it's quite likely that I require the value of `Users.completed_onboarding_form`, method 1 will be used as it is flexible and easier to reuse existing variables. However in most cases, it is usually fine to use either method as it's quite easy to change the code subsequently.
+My tip as to choosing which method to use depends on the probability of reusing the variable in the first line of code. If it's quite likely that I require the value of `Users.completed_onboarding_form`, method 1 will be used as it is flexible and easier to reuse existing variables. However in most cases, it is usually fine to use either method as it's quite easy to change the code subsequently.
 
 # <b>#5: Use meaningful names</b>
 
