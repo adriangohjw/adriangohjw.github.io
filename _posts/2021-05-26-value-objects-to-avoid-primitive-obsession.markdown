@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Value Objects to avoid Primitive Obession"
+title:  "Value Objects to avoid Primitive Obsession"
 date:   2021-05-26 17:28:00 +0800
 categories: posts
 ---
