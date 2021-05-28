@@ -9,7 +9,9 @@ categories: posts
 
 Most users we spoke to have is <b>not knowing the salary details for a particular job opening.</b> The current non-ideal workaround is to browse existing job listings that are similar, to get a gauge (if that is even possible).
 
-As such, one of the features of NodeFlair Salary is to solve this issue is to crawl job listings, tag them according to important attributes like specialisations and seniorities.
+As such, one of the features of NodeFlair Salary is to solve this issue is to crawl job listings, tag them according to important attributes like specialisations and seniorities. Here's a screenshot of it.
+
+![NodeFlair Salaries - Past Job Listings][nf_salaries_past_listings]
 
 # <b>Tagging seniorities of a job listing</b>
 
@@ -55,6 +57,20 @@ seniority = Title.new(title).to_seniority
 ### Improved Readability
 
 Almost always, this will lead to improvement in readability as you can give better names to variables, methods etc. This gives better context about what they are, and what is happening.
+
+It would be tempting to wrap the logic in a method like the one below.
+
+```ruby
+def title_to_seniority(title)
+  title.include?('junior') ? 'junior' : nil
+end
+
+seniority = title_to_seniority(title)
+```
+
+There's nothing wrong with it, but I find that
+- It is still dealing with primitive types like String
+- Often, it results in methods with an unnecessarily long name and arguments at first glance, making the code less readable. E.g. `abstract_tech_stacks_from_job_listing_description(...)` 😵
 
 ### Business logics are abstracted and hidden away
 
@@ -117,4 +133,5 @@ That’s why at [NodeFlair][nodeflair-website], we make it our mission to improv
 [scenic-gem]:                 https://github.com/scenic-views/scenic
 [nodeflair-website]:          https://www.nodeflair.com
 [nodeflair-salaries]:         https://www.nodeflair.com/salaries
+[nf_salaries_past_listings]:  /assets/nf_salaries_past_listings.png
 [banner]:                     /assets/banner.jpg
