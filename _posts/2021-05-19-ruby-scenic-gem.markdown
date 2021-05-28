@@ -5,7 +5,7 @@ date:   2021-05-19 10:54:00 +0800
 categories: posts
 ---
 
-[NodeFlair Salaries][nodeflair-salaries] is one of the many products by [NodeFlair][nodeflair-website], a Tech Career SuperApp. It allows tech talents to look up the latest updated salaries and compensation in the market. Candidates will also be able to filter salaries according to Seniority, Specialisation and Company over thousands of jobs, allowing for a more tailored experience in the click of a few buttons!
+[NodeFlair Salaries][nodeflair-salaries] is one of the many products by [NodeFlair][nodeflair-website], a Tech Career SuperApp. It allows tech talents to look up the latest updated salaries and compensation in the market. Candidates will also be able to filter salaries according to Seniority, Specialisation and Company over thousands of jobs, allowing for a more tailored experience with the click of a few buttons!
 
 For this product, we will be doing some computation across these data to derive meaningful insights.
 
@@ -35,7 +35,7 @@ Note: For this blogpost, I will simplify it down into 3 attributes (`a`, `b`, `c
 
 # <b>Initial implementation...</b>
 
-For NodeFlair Salaries, we have data from multiple sources - user submitted salary, past job listings, external sources (e.g. MyCareersFuture). As different data sources have different attributes and types, we will need to transform the data into the same structure and type in order to do our computations.
+For NodeFlair Salaries, we have data from multiple sources - user-submitted salary, past job listings, external sources (e.g. MyCareersFuture). As different data sources have different attributes and types, we will need to transform the data into the same structure and type to do our computations.
 
 ```ruby
 class Salary
@@ -73,8 +73,6 @@ We came across the [Scenic gem][scenic-gem], which is a way to use Database View
 > Using Scenic, you can bring the power of SQL views to your Rails application without having to switch your schema format to SQL. Scenic provides a convention for versioning views that keeps your migration history consistent and reversible and avoids having to duplicate SQL strings across migrations.
 
 I will be skipping the setup of the gem over in this post - do refer to the documentation!
-
-But in a nutshell, you can move the passing
 
 ### Postgres query to set up the view
 
@@ -114,7 +112,7 @@ end
 
 At first glance, the code appears much longer (and you have to run additional DB migrations). However, this brings about quite a lot of benefits:
 1. Smaller `Salary` class that's not bothered with processing the data passed in
-2. `Salary` now behaves like any ActiveRecord model - and that's a HUGE lifesaver when doing computation later on, because
+2. `Salary` now behaves like an ActiveRecord model - and that's a HUGE lifesaver when doing computation later on, because
   - Able to define relations (`has_many`, `belongs_to` etc.)
   - Able to use methods such as `where`, `scope`
 

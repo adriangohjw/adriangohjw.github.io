@@ -13,7 +13,7 @@ As such, one of the features of NodeFlair Salary is to solve this issue is to cr
 
 # <b>Tagging seniorities of a job listing</b>
 
-There are many attributes that we use, but I will simplify it for the purpose of this post to use just the job listing's title.
+There are many attributes that we use, but I will simplify it for this post to use just the job listing’s title.
 - If it contains the word 'junior', it's a junior position
 
 # <b>Issue with Primitive Obsession...</b>
@@ -30,7 +30,7 @@ title = 'some job title'
 seniority = title.include?('junior') ? 'junior' : nil
 ```
 
-Okay, not <i>THAT</i> bad. You kinda get what it is doing. But it does take you some time to digest it. And as these code smell appears in other part of the code, the total time wasted will accumulate over time.
+Okay, not <i>THAT</i> bad. You kinda get what it is doing. But it does take you some time to digest it. And as this code smell appears in other parts of the code, the total time wasted will accumulate over time.
 
 # <b>Value Object to the rescue!</b>
 
@@ -50,7 +50,7 @@ title = 'some job title'
 seniority = Title.new(title).to_seniority
 ```
 
-# <b>What do I think this is better?</b>
+# <b>Why do I think this is better?</b>
 
 ### Improved Readability
 
@@ -58,7 +58,7 @@ Almost always, this will lead to improvement in readability as you can give bett
 
 ### Business logics are abstracted and hidden away
 
-Let's say we want to update the logic in determining the seniority. As the logic to determine the seniority has been abstracted and encapsulted within the `Title` class, any changes can be made easily without the object `seniority` object do not have to care about it.
+Let's say we want to update the logic in determining the seniority. As the logic to determine the seniority has been abstracted and encapsulated within the `Title` class, any changes can be made easily without the object `seniority` object do not have to care about it.
 
 ```ruby
 class Title
