@@ -85,7 +85,7 @@ Say NO to "Fat Models, Skinny Controller". I very much love <b>"Skinny Models, S
 
 ### Remove dependency on the model class
 
-Let's say some time in the future, we decided that we no longer want to use another model (or data source) for the computation. With the initial implementation, it is gonna be more troublesome to make the changes as it depends heavily on the `SalaryGroup` class and is very tightly coupled with it. By using query object instead, we can make the changes much easier, and also with much confidence that it won't break other parts of the application (even with minimal testing).
+Let's say some time in the future, we decided that we want to use another model (or data source) for the computation. With the initial implementation, it is gonna be more troublesome to make the changes as it depends heavily on the `SalaryGroup` class and is very tightly coupled with it. By using query object instead, we can make the changes much easier, and also with much confidence that it won't break other parts of the application (even with minimal testing).
 
 <br>
 # <b>A little about what I do at NodeFlair...</b>
