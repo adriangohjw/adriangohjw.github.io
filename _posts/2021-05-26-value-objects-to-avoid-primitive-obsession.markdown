@@ -9,7 +9,7 @@ categories: posts
 
 Most users we spoke to have is <b>not knowing the salary details for a particular job opening.</b> The current non-ideal workaround is to browse existing job listings that are similar, to get a gauge (if that is even possible).
 
-As such, one of the features of NodeFlair Salary is to solve this issue is to crawl job listings, tag them according to important attributes like specialisations and seniorities. Here's a screenshot of it.
+As such, one of the features of NodeFlair Salaries is to solve this issue is to crawl job listings, tag them according to important attributes like specialisations and seniorities. Here's a screenshot of it.
 
 ![NodeFlair Salaries - Past Job Listings][nf_salaries_past_listings]
 
