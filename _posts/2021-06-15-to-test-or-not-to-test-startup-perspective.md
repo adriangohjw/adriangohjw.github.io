@@ -45,7 +45,7 @@ Since startups have limited resources but tests are also important at the same t
 
 ### Too many cases to test manually
 
-[NodeFlair Salaries][nodeflair-salaries] is one of the many products by NodeFlair, a Tech Career SuperApp. It allows tech talents to look up the latest salaries in the market. One of its features is to solve is to crawl job listings, tag them according to important attributes like specialisations and seniorities.
+[NodeFlair Salaries][nodeflair-salaries] is one of the many products by NodeFlair, a Tech Career SuperApp. It allows tech talents to look up the latest salaries in the market. One of its features is to crawl job listings and tag them according to important attributes like specialisations and seniorities.
 
 For example, here's a screenshot of [Salaries for Grab's Senior Software Engineer][nodeflair-salaries-grab-swe], which can be found on NodeFlair Salaries.
 
