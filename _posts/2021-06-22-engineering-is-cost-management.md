@@ -14,7 +14,7 @@ categories: posts
 Throughout my time managing Engineering at [NodeFlair][nodeflair-website]. Besides learning to write better code, I have also always learning to be a better engineering leader. Not quite there yet for sure, but often when making decisions, I realized that my decisions are guided by these thoughts.
 
 <b>Disclaimer</b><br>
-These are my personal opinion and what works for me now, and may not be as relevant for you. Well, they might not even be relevant to me in a year time, but who knows?
+These are my personal opinions and what works for me now, and may not be as relevant for you. Well, they might not even be relevant to me in a year time, but who knows?
 
 # <b>Engineering is Cost Management</b>
 
