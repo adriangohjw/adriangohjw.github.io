@@ -85,7 +85,7 @@ For example, for one of the products we are building, [NodeFlair Salaries][nodef
 
 Engineering managers probably know that adding manpower to a software project doesn't necessarily increase the development speed. This is because increasing headcount also increases the complexity and the amount of communication required. 
 
-So, do these checks to understand the bottleneck in your team's productivity, before you look into adding your next headcount:
+However, there are times where it seems like adding headcounts will speed things up. Even so, to maximise the impact of the new hire, we should first look into understanding the bottleneck in your team's productivity.
 
 <b>Team spending too much time in meetings?</b><br>
 ✅ Remove large meetings + Make sure all meetings have clear agendas
