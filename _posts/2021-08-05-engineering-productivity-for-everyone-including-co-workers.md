@@ -80,7 +80,7 @@ For example, for one of the products we are building, [NodeFlair Salaries][nodef
 
 ![NodeFlair Salaries Submission Form][nf-salaries-addsalary]
 
-#### <b>That extra headcount might not as useful</b>
+#### <b>That extra headcount might not be useful</b>
 
 <b>TL;DR: Re-evaluate your current team structure and processes</b>
 
