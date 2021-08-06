@@ -5,6 +5,7 @@ date:   2021-08-05 11:07:00 +0800
 categories: posts
 ---
 
+[banner]:                         /assets/banner.jpg
 [nodeflair-website]:              https://www.nodeflair.com
 [nodeflair-salaries]:             https://www.nodeflair.com/salaries
 [developer-1-minute]:             /assets/developer_1_minute.gif
