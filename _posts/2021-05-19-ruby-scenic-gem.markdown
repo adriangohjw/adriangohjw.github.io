@@ -116,18 +116,6 @@ At first glance, the code appears much longer (and you have to run additional DB
   - Able to define relations (`has_many`, `belongs_to` etc.)
   - Able to use methods such as `where`, `scope`
 
-<br>
-# <b>A little about what I do at NodeFlair...</b>
-
-The world today runs on code written by developers that solve the world’s problems and impact lives.
-  
-Now, imagine a world where developers get to code at a place where they find purpose in their work. This meaning could translate into drive that pushes boundaries to solve more of the world’s problems.
-
-That’s why at [NodeFlair][nodeflair-website], we make it our mission to improve the world by empowering developers to code() at where they love.
-
-![NodeFlair Banner][banner]
-
 [scenic-gem]:                 https://github.com/scenic-views/scenic
 [nodeflair-website]:          https://www.nodeflair.com
 [nodeflair-salaries]:         https://www.nodeflair.com/salaries
-[banner]:                     /assets/banner.jpg

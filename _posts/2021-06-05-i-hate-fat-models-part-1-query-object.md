@@ -8,7 +8,6 @@ categories: posts
 [nodeflair-website]:              https://www.nodeflair.com
 [nodeflair-salaries]:             https://www.nodeflair.com/salaries
 [nf_salaries_popular_companies]:  /assets/nf_salaries_popular_companies.png
-[banner]:                         /assets/banner.jpg
 
 At [NodeFlair][nodeflair-website], we started out using Ruby on Rails, a MVC (model–view–controller) framework.
 
@@ -86,14 +85,3 @@ Say NO to "Fat Models, Skinny Controller". I very much love <b>"Skinny Models, S
 ### Remove dependency on the model class
 
 Let's say some time in the future, we decided that we want to use another model (or data source) for the computation. With the initial implementation, it is gonna be more troublesome to make the changes as it depends heavily on the `SalaryGroup` class and is very tightly coupled with it. By using query object instead, we can make the changes much easier, and also with much confidence that it won't break other parts of the application (even with minimal testing).
-
-<br>
-# <b>A little about what I do at NodeFlair...</b>
-
-The world today runs on code written by developers that solve the world’s problems and impact lives.
-  
-Now, imagine a world where developers get to code at a place where they find purpose in their work. This meaning could translate into drive that pushes boundaries to solve more of the world’s problems.
-
-That’s why at [NodeFlair][nodeflair-website], we make it our mission to improve the world by empowering developers to code() at where they love.
-
-![NodeFlair Banner][banner]

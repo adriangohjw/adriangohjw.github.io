@@ -7,7 +7,6 @@ categories: posts
 
 [nodeflair-website]:              https://www.nodeflair.com
 [nodeflair-salaries]:             https://www.nodeflair.com/salaries
-[banner]:                         /assets/banner.jpg
 [nf-salaries-explore]:            /assets/nf_salaries_explore.png
 [post-on-writing-test]:           {% link _posts/2021-06-15-to-test-or-not-to-test-startup-perspective.md %}
 
@@ -79,14 +78,3 @@ Also, from a perspective of the cost-to-output ratio, it might make a lot more f
 If you are an engineering leader at a larger company, or different industry, or simply has a different opinion, do let me know! More than happy to hear from everyone.
 
 Cheers, and see you later alligator~
-
-<br>
-# <b>A little about what I do at NodeFlair...</b>
-
-The world today runs on code written by developers that solve the world’s problems and impact lives.
-  
-Now, imagine a world where developers get to code at a place where they find purpose in their work. This meaning could translate into drive that pushes boundaries to solve more of the world’s problems.
-
-That’s why at [NodeFlair][nodeflair-website], we make it our mission to improve the world by empowering developers to code() at where they love.
-
-![NodeFlair Banner][banner]

@@ -5,7 +5,6 @@ date:   2021-08-05 11:07:00 +0800
 categories: posts
 ---
 
-[banner]:                         /assets/banner.jpg
 [nodeflair-website]:              https://www.nodeflair.com
 [nodeflair-salaries]:             https://www.nodeflair.com/salaries
 [developer-1-minute]:             /assets/developer_1_minute.gif
@@ -130,14 +129,3 @@ However, the tough part about it is standing firm in your decision and communica
 If you are an engineer and has different thoughts or more tips, do let me know! More than happy to hear from everyone.
 
 Cheers, and see you later alligator~
-
-<br>
-# <b>A little about what I do at NodeFlair...</b>
-
-The world today runs on code written by developers that solve the world’s problems and impact lives.
-  
-Now, imagine a world where developers get to code at a place where they find purpose in their work. This meaning could translate into drive that pushes boundaries to solve more of the world’s problems.
-
-That’s why at [NodeFlair][nodeflair-website], we make it our mission to improve the world by empowering developers to code() at where they love.
-
-![NodeFlair Banner][banner]

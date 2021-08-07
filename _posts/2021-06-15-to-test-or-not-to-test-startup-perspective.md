@@ -9,7 +9,6 @@ categories: posts
 [nodeflair-salaries]:             https://www.nodeflair.com/salaries
 [nodeflair-salaries-grab-swe]:    https://nodeflair.com/companies/grab/salaries/software_engineer/senior
 [nf_salaries_grab_swe]:           /assets/nf_salaries_grab_swe.png
-[banner]:                         /assets/banner.jpg
 
 Ahhhh testing in software engineering. It is not uncommon to hear developers skip writing test, or proclaim their annoyance with it at least. But if that's the case, why do we still write tests?
 
@@ -66,14 +65,3 @@ Forget about the Space-Time complexity. I use the <b>Fuck-My-Life complexity</b>
 Here's a disclaimer: What works for us might not work for you. For example, if you are a fintech startup, there's probably less room for errors, so more stringent testings will be required. Do adapt as you see fit.
 
 And also, I don't know how to end off this post... So all the best and I hope all your test suites pass.
-
-<br>
-# <b>A little about what I do at NodeFlair...</b>
-
-The world today runs on code written by developers that solve the world’s problems and impact lives.
-  
-Now, imagine a world where developers get to code at a place where they find purpose in their work. This meaning could translate into drive that pushes boundaries to solve more of the world’s problems.
-
-That’s why at [NodeFlair][nodeflair-website], we make it our mission to improve the world by empowering developers to code() at where they love.
-
-![NodeFlair Banner][banner]

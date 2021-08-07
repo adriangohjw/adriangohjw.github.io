@@ -94,19 +94,6 @@ DRY principle is one of the best practices talked about by developers (Although 
 <b>Easier to change the code</b><br>
 One of the reasons why we care about readability is because we would like to be able to make changes to our code quickly without breaking anything. By abstracting these logics into separate methods, we are able to do so much faster. For example, if you wish to change how `are_products_unavailable` is being implemented, you can do so quickly and confidently as it has been isolated out into a standalone method.
 
-
-<br>
-# <b>A little about what I do at NodeFlair...</b>
-
-The world today runs on code written by developers that solve the world’s problems and impact lives.
-  
-Now, imagine a world where developers get to code at a place where they find purpose in their work. This meaning could translate into drive that pushes boundaries to solve more of the world’s problems.
-
-That’s why at [NodeFlair][nodeflair-website], we make it our mission to improve the world by empowering developers to code() at where they love.
-
-![NodeFlair Banner][banner]
-
 [refactoring-from-good-to-great]: https://youtu.be/DC-pQPq0acs?t=157
 [wet-codebase]:               https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase
 [nodeflair-website]:          https://www.nodeflair.com
-[banner]:                     /assets/banner.jpg
