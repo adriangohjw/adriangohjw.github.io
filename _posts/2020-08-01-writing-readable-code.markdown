@@ -30,41 +30,11 @@ Below are 2 snippets of code which are exactly the same.
 
 Even though the code in the 1st example appears shorter, it just seems like one chunk of code and it is not clear what the reader should focus on.
 
-{% highlight ruby %}
-#=> meh code
-def check_out(current_user, cart)
-  if cart.count == 0
-    return Status.new(false, "empty cart")
-  end
-  total_price = cart.calculate_total_price
-  if current_user.balance < total_price
-    return Status.new(false, "not enough money")
-  end
-  current_user.deduct_balance(total_price)
-  return Status.new(true, nil) 
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=1_line_breaks_before.rb"></script>
 
 In the 2nd example, line breaks are used strategically to organize the code by breaking it down into many smaller and more digestable snippets based on it's intent and purpose. As such, readers can better navigate through the code, especially if the code is longer than that shown in the example (even though you probably shouldn't have such large functions, but that's a topic for another day)
 
-{% highlight ruby %}
-#=> better code (with logical line breaks)
-def check_out(current_user)
-  if cart.count == 0
-    return Status.new(false, "empty cart")
-  end
-
-  total_price = cart.calculate_total_price
-
-  if current_user.balance < total_price
-    return Status.new(false, "not enough money")
-  end
-
-  current_user.deduct_balance(total_price)
-
-  return Status.new(true, nil) 
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=1_line_breaks_after.rb"></script>
 
 # <b>#2: If-else? Put the happy path first!</b>
 
@@ -74,23 +44,9 @@ According to Wikipedia, happy path is defined as such
 
 When we are reading code, we read it from top-down. As such, by putting the happy path in the `if` block, we are able to quickly understand what the code does in a quick glance. It is a similar concept to why when we handle exceptions, the errors are being handled in the later half of the code.
 
-{% highlight ruby %}
-#=> meh code
-if transaction.is_failure
-  handle_failure(transaction)
-else
-  handle_success(transaction)
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=2_happypath_before.rb"></script>
 
-{% highlight ruby %}
-#=> better code (happy path first)
-if transaction.is_successful
-  handle_success(transaction)
-else
-  handle_failure(transaction)
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=2_happypath_after.rb"></script>
 
 # <b>#3: Nested if-else? Try guard clauses instead</b>
 
@@ -100,52 +56,11 @@ However, in this post, I would like to focus on how it help to improve code read
 
 In the previous point, I mentioned we should put the happy path first in an if-else statement and that would result in something like this:
 
-{% highlight ruby %}
-#=> meh code
-def check_out(current_user)
-  cart = current_user.cart
-  
-  if cart.count > 0
-    if !cart.are_products_available
-      if current_user.balance >= total_price
-        current_user.deduct_balance(total_price)
-        return Status.new(true, nil) 
-      else
-        return Status.new(false, "not enough money")
-      end
-    else
-      return Status.new(false, "some products are unavailable")
-    end
-  else
-    return Status.new(false, "empty cart")
-  end
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=3_guard_clause_before.rb"></script>
 
 As you can see, in some instances where there are multple conditions, you might end up with a monsterous nested if-else block and stiil face a readability issue. In such instances, using guard clauses will actually improve the readability and let the readers follow through the code with greater ease.
 
-{% highlight ruby %}
-#=> better code (early returns with guard clauses)
-def check_out(current_user)
-  cart = current_user.cart
-
-  if cart.count == 0
-    return Status.new(false, "empty cart")
-  end
-
-  if !cart.are_products_available
-    return Status.new(false, "some products are unavailable")
-  end
-
-  if current_user.balance < total_price
-    return Status.new(false, "not enough money")
-  end
-
-  current_user.deduct_balance(total_price)
-
-  return Status.new(true, nil) 
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=3_guard_clause_after.rb"></script>
 
 Other than immediately improving the code readability, guard clauses also have other benefits like:
 - Easier to make changes to the code in the future
@@ -157,27 +72,13 @@ At NodeFlair, we empower developers to code() at where they love by matching the
 
 In some instance, we might want to filter them by certain attributes in their profile as such:
 
-{% highlight ruby %}
-#=> meh code
-users = Users.completed_onboarding_form
-users = users.where(specialisations: "backend")
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=4_avoid_variable_assignment_before.rb"></script>
 
 In the code snippet above, when people are reading your code, they have to store the value of `users` in their head as they navigate through your code. This problem is further amplified when code are added between the 2 lines of code.
 
 To offload the mental load of the readers, we can either introduce a new variable or define it to what we need immediately.
 
-{% highlight ruby %}
-#=> better code (avoid reassigning of variables)
-
-#= Method 1 (introduce a new variable)
-users = Users.completed_onboarding_form
-users_backend = users.where(specialisations: "backend")
-
-#= Method 2 (define it to what we need immediately)
-users = Users.completed_onboarding_form
-             .where(specialisations: "backend")
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=4_avoid_variable_assignment_after.rb"></script>
 
 My tip as to choosing which method to use depends on the probability of reusing the variable in the first line of code. If it's quite likely that I require the value of `Users.completed_onboarding_form`, method 1 will be used as it is flexible and easier to reuse existing variables. However in most cases, it is usually fine to use either method as it's quite easy to change the code subsequently.
 
@@ -185,21 +86,11 @@ My tip as to choosing which method to use depends on the probability of reusing 
 
 Without any context, can you take a guess at what this code does?
 
-{% highlight ruby %}
-#=> meh code
-def cal_tp(p, q, d, s)
-  (p * q) - d + s
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=5_meaningful_name_before.rb"></script>
 
 No idea? What about this?
 
-{% highlight ruby %}
-#=> better code (with usage of meaningful names)
-def calculate_total_price(price, quantity, discount, shipping)
-  (price * quantity) - discount + shipping
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/2bbea0f0df2fc7d77fc91552bc82d1bb.js?file=5_meaningful_name_after.rb"></script>
 
 As you can see, the two functions do exactly the same thing but it's way easier for the reader to understand what's going on in the 2nd example. Even without giving you any context, it is apparent that it is related to e-commerce. 
 

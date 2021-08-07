@@ -11,25 +11,7 @@ For this product, we will be doing some computation across these data to derive 
 
 # <b>Some of data sources we are dealing with</b>
 
-```ruby
-class UserSalary < ApplicationRecord
-  attr_reader :a_but_different_name, 
-              :b,
-              :c
-end
-
-class JobListing < ApplicationRecord
-  attr_reader :a, 
-              :b_but_different_name,
-              :c
-end
-
-class MyCareersFutureJob < ApplicationRecord
-  attr_reader :a, 
-              :b,
-              :c_but_different_name
-end
-```
+<script src="https://gist.github.com/adriangohjw/00f97a37cb5dcb5df5e25a21132086a4.js?file=models.rb"></script>
 
 Note: For this blogpost, I will simplify it down into 3 attributes (`a`, `b`, `c`)
 
@@ -37,28 +19,7 @@ Note: For this blogpost, I will simplify it down into 3 attributes (`a`, `b`, `c
 
 For NodeFlair Salaries, we have data from multiple sources - user-submitted salary, past job listings, external sources (e.g. MyCareersFuture). As different data sources have different attributes and types, we will need to transform the data into the same structure and type to do our computations.
 
-```ruby
-class Salary
-  attr_reader :a, :b, :c
-
-  def initialize(data)
-    case data
-    when UserSalary
-      @a = data.a_but_different_name
-      @b = data.b
-      @c = data.c
-    when JobListing
-      @a = data.a
-      @b = data.b_but_different_name
-      @c = data.c
-    when MyCareersFutureJob
-      @a = data.a
-      @b = data.b
-      @c = data.c_but_different_name
-    end
-  end
-end
-```
+<script src="https://gist.github.com/adriangohjw/00f97a37cb5dcb5df5e25a21132086a4.js?file=salary_before.rb"></script>
 
 It looks doesn't look <i>THAT</i> bad for now, but just imagine the horror if this thing extends to many more data sources, and the number of attributes increase is much larger 😱
 
@@ -76,37 +37,11 @@ I will be skipping the setup of the gem over in this post - do refer to the docu
 
 ### Postgres query to set up the view
 
-```sql
-SELECT
-  a_but_different_name AS "a",
-  b,
-  c
-FROM user_salaries
-
-UNION
-
-SELECT
-  a,
-  b_but_different_name AS "b",
-  c 
-FROM job_listings
-
-UNION
-
-SELECT
-  a,
-  b,
-  c_but_different_name AS "c" 
-FROM my_careers_future_jobs
-```
+<script src="https://gist.github.com/adriangohjw/00f97a37cb5dcb5df5e25a21132086a4.js?file=view.sql"></script>
 
 ### A much simpler Salary class
 
-```ruby
-class Salary < ApplicationRecord
-  attr_reader :a, :b, :c
-end
-```
+<script src="https://gist.github.com/adriangohjw/00f97a37cb5dcb5df5e25a21132086a4.js?file=salary_after.rb"></script>
 
 ### Benefits to using Scenic
 

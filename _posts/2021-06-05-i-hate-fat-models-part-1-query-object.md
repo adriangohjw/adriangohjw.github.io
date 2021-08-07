@@ -21,11 +21,7 @@ Well, that doesn't sound too bad. However, what we realized is that over time, t
 
 At the beginning of time (or the development of [NodeFlair Salaries][nodeflair-salaries]), there was a class `SalaryGroup`. Without complicating this post with unnecessary details, all we need to know is that it is one of the key models in this product.
 
-```ruby
-class SalaryGroup < ApplicationRecord
-  # some simple code
-end
-```
+<script src="https://gist.github.com/adriangohjw/a081d63ebc10df611dfa37ab423e8a97.js?file=before.rb"></script>
 
 # <b>Implementing new feature - Popular Companies</b>
 
@@ -35,18 +31,7 @@ One of the features we added to [NodeFlair Salaries][nodeflair-salaries] recentl
 
 # <b>Let's take a look at the initial implementation</b>
 
-```ruby
-class SalaryGroup < ApplicationRecord
-  # some simple code
-
-  def self.popular_salaries
-    # return data in whatever shape is needed
-  end
-end
-
-# Somewhere in the controller
-@data = SalaryGroup.popular_salaries
-```
+<script src="https://gist.github.com/adriangohjw/a081d63ebc10df611dfa37ab423e8a97.js?file=before_after_some_time.rb"></script>
 
 This implementation is straightforward and easy to understand. However, our class has grown fatter with an additional method. Not an issue for a small object, but as the application grows and we have more requirements and features, I can foresee the model growing to a few hundred lines of code. 🤮
 
@@ -54,16 +39,7 @@ This implementation is straightforward and easy to understand. However, our clas
 
 Instead of extending the class `SalaryGroup`, we can simply create a new query object called `PopularSalariesQuery`
 
-```ruby
-class PopularSalariesQuery
-  def all
-    # return data in whatever shape is needed
-  end
-end
-
-# Somewhere in the controller
-@data = PopularSalariesQuery.new.all
-```
+<script src="https://gist.github.com/adriangohjw/a081d63ebc10df611dfa37ab423e8a97.js?file=after.rb"></script>
 
 # <b>Why do I think this is better?</b>
 

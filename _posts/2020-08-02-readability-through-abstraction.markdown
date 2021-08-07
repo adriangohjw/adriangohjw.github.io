@@ -11,70 +11,13 @@ I had a life changing moment when I came across a conference video by Ben Orenst
 
 # <b>Before using abstraction</b>
 
-{% highlight ruby %}
-#=> meh code
-def check_out(current_user)
-  cart = current_user.cart
-
-  if cart.count == 0
-    return Status.new(false, "empty cart")
-  end
-
-  if cart.are_products_unavailable
-    return Status.new(false, "some products are unavailable")
-  end
-
-  if current_user.balance < cart.total_price
-    return Status.new(false, "not enough money")
-  end
-
-  current_user.deduct_balance(total_price)
-
-  return Status.new(true, nil) 
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/3003bf3360e2903130e62d54d4f6bbb2.js?file=before.rb"></script>
 
 Code readability is alright and it is easy to follow through what the code does. However, there is room for improvement and we can do so by saving the reader the trouble of reading the implementation details.
 
 # <b>After using abstraction</b>
 
-{% highlight ruby %}
-#=> better code (hiding implementation details with abstractions)
-STATUS_EMPTY_CART = Status.new(false, "empty cart") 
-STATUS_PRODUCTS_UNAVAILABLE = Status.new(false, "some products are unavailable")
-STATUS_INSUFFICIENT_MONEY = Status.new(false, "not enough money")
-STATUS_SUCCESS = Status.new(true, nil) 
-
-def check_out(current_user)
-  cart = current_user.cart
-
-  return STATUS_EMPTY_CART if is_cart_empty(cart)
-
-  return STATUS_PRODUCTS_UNAVAILABLE if are_products_unavailable(cart)
-
-  return STATUS_INSUFFICIENT_MONEY if \
-    has_insufficient_money(balance: current_user.balance, 
-                           total_price: cart.total_price)
-
-  current_user.deduct_balance(total_price)
-
-  return STATUS_SUCCESS
-end
-
-private
-
-def is_cart_empty(cart)
-  return cart.count == 0
-end
-
-def are_products_unavailable(cart)
-  return cart.are_products_available
-end
-
-def has_insufficient_money(balance:, total_price:)
-  return balance < total_price
-end
-{% endhighlight %}
+<script src="https://gist.github.com/adriangohjw/3003bf3360e2903130e62d54d4f6bbb2.js?file=after.rb"></script>
 
 At first glance, the code appears much longer and you will ask the question "Is it actually easier?"
 

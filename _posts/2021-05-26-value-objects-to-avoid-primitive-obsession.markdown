@@ -26,31 +26,13 @@ There's quite a couple of content out there that explains this, so let me just q
 
 ### Let's take a look at the initial implementation
 
-```ruby
-title = 'some job title'
-
-seniority = title.include?('junior') ? 'junior' : nil
-```
+<script src="https://gist.github.com/adriangohjw/2fb900e738fc1c4ff2adf1d64fa866a6.js?file=before.rb"></script>
 
 Okay, not <i>THAT</i> bad. You kinda get what it is doing. But it does take you some time to digest it. And as this code smell appears in other parts of the code, the total time wasted will accumulate over time.
 
 # <b>Value Object to the rescue!</b>
 
-```ruby
-class Title
-  def initialize(title)
-    @title = title
-  end
-
-  def to_seniority
-    @title.include?('junior') ? 'junior' : nil
-  end
-end
-
-title = 'some job title'
-
-seniority = Title.new(title).to_seniority
-```
+<script src="https://gist.github.com/adriangohjw/2fb900e738fc1c4ff2adf1d64fa866a6.js?file=after.rb"></script>
 
 # <b>Why do I think this is better?</b>
 
@@ -60,13 +42,7 @@ Almost always, this will lead to improvement in readability as you can give bett
 
 It would be tempting to wrap the logic in a method like the one below.
 
-```ruby
-def title_to_seniority(title)
-  title.include?('junior') ? 'junior' : nil
-end
-
-seniority = title_to_seniority(title)
-```
+<script src="https://gist.github.com/adriangohjw/2fb900e738fc1c4ff2adf1d64fa866a6.js?file=why_better_readability.rb"></script>
 
 There's nothing wrong with it, but I find that
 - It is still dealing with primitive types like String
@@ -76,48 +52,13 @@ There's nothing wrong with it, but I find that
 
 Let's say we want to update the logic in determining the seniority. As the logic to determine the seniority has been abstracted and encapsulated within the `Title` class, any changes can be made easily without the object `seniority` object do not have to care about it.
 
-```ruby
-class Title
-  def initialize(title)
-    @title = title
-  end
-
-  def to_seniority
-    return 'junior' if @title.include?('junior')
-    return 'senior' if @title.include?('senior')
-    return 'manager' if @title.include?('manager')
-    nil
-  end
-end
-
-# code remains unchanged!
-seniority = Title.new(title).to_seniority  
-```
+<script src="https://gist.github.com/adriangohjw/2fb900e738fc1c4ff2adf1d64fa866a6.js?file=why_better_abstracted_business_logic.rb"></script>
 
 ### Class can be extended easily
 
 Let's say now we also want to determine the specialisation (e.g. data scientist, software engineer) from the title. We can add a new method easily!
 
-```ruby
-class Title
-  def initialize(title)
-    @title = title
-  end
-
-  def to_seniority
-    @title.include?('junior') ? 'junior' : nil
-  end
-
-  # easy to add a new method to the class!
-  def to_specialisation
-    return 'software engineer' if @title.include?('software')
-    return 'data scientist' if @title.include?('data sci')
-    nil
-  end
-end
-
-specialisation = Title.new(title).to_specialisation
-```
+<script src="https://gist.github.com/adriangohjw/2fb900e738fc1c4ff2adf1d64fa866a6.js?file=why_better_easily_extended_class.rb"></script>
 
 [scenic-gem]:                 https://github.com/scenic-views/scenic
 [nodeflair-website]:          https://www.nodeflair.com
