@@ -1,15 +1,37 @@
 ---
 layout: post
-title:  "[Book Summary] Refactoring: Improving the Design of Existing Code"
+title:  "[Cheat Sheet] Refactoring: Improving the Design of Existing Code"
 date:   2021-08-07 18:08:00 +0800
+image: /assets/refactoring-cheat-sheet-cover.png
 categories: posts
 ---
+
+[cover]:            /assets/refactoring-cheat-sheet-cover.png
+
+![][cover]
 
 Recently, I started reading <b>Refactoring: Improving the Design of Existing Code</b> by Martin Fowler. I thought it would be useful to translate my learnings into bite-size content in Ruby for future references.
 
 Note:
 - As the source is in Java, I have modified the code to make more sense in Ruby
 - As I am trying to keep this concise such that my future self can easily refer to it (hi future self if you are reading this), I will be skipping the implementation steps as I find it to be rather straightforward once we grasped the concept.
+
+# <b>Why I recommend this book</b>
+
+<b>1) Refactoring techniques are small</b>
+
+They can take a few minutes to an hour at most (depends on the health of the codebase).
+- Lots of <b>quick wins</b> and instant satisfaction!
+- No need to convince non-engineering management to stop progress to make the changes.
+
+<b>2) Suitable for all</b>
+
+- Even someone with basic development experience can learn and apply the techniques
+- While the book is in Java, most of the concepts are universal and rather <b>language agnostic</b>.
+
+<b>3) Objectively better</b>
+
+Most approaches are objectively an improvement and do not require any degree of agreement among the engineering team
 
 # <b>Table of Content</b>
 - [Chapter 6: Composing Methods](#chapter-6-composing-methods)
@@ -1906,4 +1928,4 @@ Note:
 - This is the flip side of <b>Replace Delegation with Inheritance</b>
 - Only use if the subclass is using all the methods of the superclass to which you are delegating
 
----<br>
+---
