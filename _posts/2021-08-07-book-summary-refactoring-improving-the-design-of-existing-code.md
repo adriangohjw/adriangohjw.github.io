@@ -1657,6 +1657,9 @@ end
 Why it is better:
 - Exceptions should be used for exceptional behaviour - behaviour that is an unexpected error, and not acts as a substitute for conditional tests. If you can reasonably expect the caller to check the condition before calling the operation, you should provide a test.
 
+Note:
+- I am on the fence about this. I feel like it adds more distraction to someone reading it by bloating up the logic portion of the code. Think about it, as opposed to being focused on `values[period_number]`, you are now bothered by the checks, which worsen the time taken for someone to comprehend what this code does.
+
 ---
 <br>
 
