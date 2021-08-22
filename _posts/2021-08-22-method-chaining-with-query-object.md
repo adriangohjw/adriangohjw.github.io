@@ -1,12 +1,15 @@
 ---
 layout: post
-title:  "Kill long parameters with Method Chaining"
+title:  "Kill Bloated Controller with Method Chaining"
 date:   2021-08-22 14:11:00 +0800
 categories: posts
 ---
 
-[nodeflair-salaries]:             https://www.nodeflair.com/salaries
+[nodeflair-salaries]:           https://www.nodeflair.com/salaries
 [nf_salaries_explore_filters]:  /assets/nf_salaries_explore_filters.png
+[cover]:                        /assets/kill_bloated_controller_cover.png
+
+![][cover]
 
 This post could be helpful for you if you are tired of:
 - Having controller bloated with conditional filtering logics OR
