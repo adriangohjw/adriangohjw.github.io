@@ -26,27 +26,7 @@ With data from user submissions and past job listings, [NodeFlair Salaries][node
 
 Because of the sheer number of ways to filter your results, it is not uncommon to see your controller looks something like this.
 
-```ruby
-class SalariesController < ApplicationController
-  # For simplicity sake, I have limited it to 3 filtering logics
-  def search
-    @results = Salary.all
-
-    @results = @results.where(company: params[:companies])
-      unless params[:companies].blank?
-
-    @results = @results.where(source: 'user_submission')
-      if params[:user_submission_only] == true
-
-    case params[:order_by]
-    when 'number_of_submissions'
-      @results = @results.order(submission_count: :desc)
-    when 'company_name'
-      @results = @results.order(company_name: :desc)
-    end
-  end
-end
-```
+<script src="https://gist.github.com/adriangohjw/23ee6839536d3a837d2517140c34543d.js?file=before.rb"></script>
 
 Wow, one look and this presents us with two issues:
 - <b>Bloated controller</b> - It should not have to worry about how the filtering is implemented
@@ -56,106 +36,25 @@ Wow, one look and this presents us with two issues:
 
 We can abstract the filtering logic into a query object `SalaryQuery` as such:
 
-```ruby
-class SalaryQuery
-  def new
-    @results = Salary.all
-  end
-
-  def call(companies:, source:, order_by:)
-    @results = @results.where(company: companies)
-      unless companies.blank?
-
-    @results = @results.where(source: 'user_submission')
-      if source == true
-
-    case order_by
-    when 'number_of_submissions'
-      @results = @results.order(submission_count: :desc)
-    when 'company_name'
-      @results = @results.order(company_name: :desc)
-    end
-
-    @results
-  end
-end
-```
+<script src="https://gist.github.com/adriangohjw/23ee6839536d3a837d2517140c34543d.js?file=1_query_object.rb"></script>
 
 This hides the implementation logic from the controller - it is now skinnier and the `SalaryQuery` can even be reused in another part of our code!
 
-```ruby
-class SalariesController < ApplicationController
-  def search
-    @results =
-      SalaryQuery.new
-                 .call(companies: params[:companies],
-                       source: params[:user_submission_only],
-                       order_by: params[:order_by])
-  end
-end
-```
-
+<script src="https://gist.github.com/adriangohjw/23ee6839536d3a837d2517140c34543d.js?file=1_query_object_in_controller.rb"></script>
 
 # <b>Good to Great: Improve it with Methods Chaining</b>
 
-While using query object can already solve our initial two issues, we introduced a new code smell as we are <b>passing many parameters into the query object</b>. Readability worsens with the number of parameters passed in.
+While using query object can already solve our initial two issues, we introduced a new code smell as we are <b>passing many parameters into the query object</b>. Readability worsens as the number of parameters being passed in increases- we simply have no idea what is happening and are just hoping for the best!
 
-Thus, what I like to do to improve it is to use method chaining. The end product will look something like this:
+<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/TvXwdYI205i4E" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/power-puff-girls-TvXwdYI205i4E">via GIPHY</a></p>
 
-```ruby
-class SalariesController < ApplicationController
-  def search
-    @results =
-      SalaryQuery.new
-                 .filter_by_companies(params[:companies])
-                 .filter_by_user_submission_only?(params[:user_submission_only])
-                 .order_by_attribute(params[:order_by])
-                 .call
-  end
-end
-```
+Thus, what I like to do to improve it is to use method chaining, which results in the following. The methods' names are explicit and it is very clear what the query object is doing with our parameters.
 
-The methods' names are explicit and it is very clear what the query object is doing with our parameters.
+<script src="https://gist.github.com/adriangohjw/23ee6839536d3a837d2517140c34543d.js?file=2_query_object_with_method_chaining_in_controller.rb"></script>
 
-```ruby
-class SalaryQuery
-  def new
-    @results = Salary.all
-  end
+We also no longer have a bloated `call` method that does all the work.
 
-  # filtering by attributes
-  def filter_by_companies(companies)
-    @results = @results.where(company: companies)
-      unless companies.blank?
-    
-    self
-  end
-
-  # filtering by boolean value
-  def filter_by_user_submission_only?(user_submission_only)
-    @results = @results.where(source: 'user_submission')
-      if user_submission_only
-
-    self
-  end
-
-  # conditional filtering by attribute
-  def order_by_attribute(attribute)
-    case attribute
-    when 'number_of_submissions'
-      @results = @results.order(submission_count: :desc)
-    when 'company_name'
-      @results = @results.order(company_name: :desc)
-    end
-
-    self
-  end
-
-  def call
-    @results
-  end
-end
-```
+<script src="https://gist.github.com/adriangohjw/23ee6839536d3a837d2517140c34543d.js?file=2_query_object_with_method_chaining.rb"></script>
 
 # <b>Why do I think this is better?</b>
 
