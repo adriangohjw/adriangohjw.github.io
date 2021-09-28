@@ -5,9 +5,10 @@ date:   2021-09-28 14:32:00 +0800
 categories: posts
 ---
 
-[nodeflair-salaries]:               https://www.nodeflair.com/salaries
-[nodeflair-salaries-submission]:    https://www.nodeflair.com/salaries/addsalary
-[cover]:                            /assets/database-materialized-views.png
+[nodeflair-salaries]:                     https://www.nodeflair.com/salaries
+[nodeflair-salaries-submission]:          https://www.nodeflair.com/salaries/addsalary
+[cover]:                                  /assets/database-materialized-views.png
+[db-materialized-views-cpu-utilization]:  /assets/db-materialized-views-cpu-utilization.png
 
 ![][cover]
 
@@ -50,6 +51,25 @@ This is not expensive for simple queries. However, if your view is made up of mu
 In our case, every time we query `SalaryGroup`, it will first have to compute `UnifiedSalary` (which consist of multiple JOIN and WHERE statements) before it goes on to do some GROUP statements. This is a very expensive query and
 
 On the other hand, <b>Materialization is a form of caching</b>. Instead of computing the result every single time, <b>Materialized View generates the view once and store a copy of the result</b>. Every subsequent read will be reading from this copy - just like reading from a table.
+
+# <b>Benefits beyond reducing query time</b>
+
+Besides reducing query time, we also observed an unintended improvement in other aspects.
+
+For instance, our <b>database's CPU utilization drops and fluctuates much less regardless of the number of queries</b>. As observed from the image below:
+- Peak CPU utilization drops by an average of 78%
+- Non-peak CPU utilization drops by an average of 67%
+- The difference in utilization between peak and non-peak shrinks from 3x to 2x 
+
+![][db-materialized-views-cpu-utilization]
+<div align="center">
+  <div style="font-size: 80%; width: 80%">
+    Database's CPU utilization (before v.s. after making changes on 28 September)
+  </div>
+</div>
+<br>
+
+This allows us to deal with spikes in database requests with greater ease, as well as scale down our database resources. As such, we can <b>save up on some of our costs for cloud services</b>. (Damn it, probably shouldn't have invested in Amazon)
 
 # <b>It sounds too good to be true..?</b>
 
