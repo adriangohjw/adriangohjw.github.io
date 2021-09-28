@@ -41,6 +41,8 @@ However, over the past 4 months, <b>our data set has grown in size</b> due to [m
 
 In addition, this issue will only worsen over time as the data set continues to grow. Just like a broken relationship, we have to fix it before it gets worse.
 
+<div style="width:100%;height:0;padding-bottom:71%;position:relative;"><iframe src="https://giphy.com/embed/xT9C25UNTwfZuk85WP" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/Giflytics-gif-jazminantoinette-giflytics-xT9C25UNTwfZuk85WP">via GIPHY</a></p>
+
 # <b>How does Materialized View reduce query time</b>
 
 Before understanding this, we need to <b>understand how normal View works</b>.
