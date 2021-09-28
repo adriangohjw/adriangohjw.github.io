@@ -36,7 +36,7 @@ For those who did not read the post, here's a quick run-through on how we genera
 
 # <b>Hey View, it's not working out for us anymore...</b>
 
-However, over the past 4 months, <b>our data set has grown in size</b> due to [more users are contributing their salaries][nodeflair-salaries-submission] and we have got more job listings to use in the salary estimation process. Thus, our queries and APIs were taking longer to complete (up to 5x longer).
+However, over the past 4 months, <b>our data set used in salary computation has grown in size</b> as [more users are contributing their salaries][nodeflair-salaries-submission] and us getting more job listings. Thus, our queries and APIs were taking longer to complete (up to 5x longer).
 
 In addition, this issue will only worsen over time as the data set continues to grow. Just like a broken relationship, we have to fix it before it gets worse.
 
@@ -47,7 +47,7 @@ Every single time you query from a normal View, it will compute the underlying S
 
 This is not expensive for simple queries. However, if your view is made up of multiple JOINs, involve complex computation and/or access to a huge data source, the query will be expensive. It will be even more expensive if the view is being accessed frequently.
 
-In our case, every time we query `SalaryGroup`, it will first have to compute `UnifiedSalary` (which consist of multiple JOIN and WHERE statements) before it goes on to do some GROUP statements. This is a very expensive query and
+In our case, every time we query `SalaryGroup`, it will first have to compute `UnifiedSalary` (which consist of multiple JOIN and WHERE statements) before it goes on to do some GROUP statements. This is a very expensive and slow query.
 
 On the other hand, <b>Materialization is a form of caching</b>. Instead of computing the result every single time, <b>Materialized View generates the view once and store a copy of the result</b>. Every subsequent read will be reading from this copy - just like reading from a table.
 
@@ -73,7 +73,7 @@ The above 2 factors will also determine your refresh frequencies. If you have a 
 - Has lower tolerance for out-of-date data. E.g. Fintech or Medtech
 - The underlying data updates in a sporadical manner
 
-In the case of NodeFlair Salaries, our data set is growing consistently and we are fine refreshing our results every other minute, and thus, we went for method 1.
+In the case of NodeFlair Salaries, our data set is growing consistently at a predictable pace and we are alright with only refreshing our results every other minute. Therefore, we went with method 1.
 
 # <b>It's not for everyone (and that's fine)</b>
 
@@ -87,7 +87,7 @@ As such, if the view is not being accessed as often, we might potentially have o
 
 <b>2. Efficiency improvement is negligible</b>
 
-Not all Views are created equally - some are much more expensive because of their logic.
+Not all Views are created equally - some are more expensive than others due to their logic, as mentioned above.
 
 In addition, query speed depends on the size of the data source you are querying from.
 
